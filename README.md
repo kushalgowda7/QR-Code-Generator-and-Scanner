@@ -1,2 +1,2 @@
 # QR-CODE-GENERATOR-SCANNER
-QR Code Generator and Scanner
+Live Demo - https://kushalgowda7.github.io/QR-Code-Generator-and-Scanner/
