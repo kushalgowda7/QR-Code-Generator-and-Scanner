@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kushal Project</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1>QR Code Generator & Scanner</h1>
+    </div>
+  </header>
+  <div class="container-fluid d-flex flex-column main-content">
+    <main class="flex-grow-1 d-flex justify-content-center align-items-start p-3">
+      
+      <!-- QR Code Generator -->
+      <section id="generator" class="card">
+        <h2><i class="fas fa-plus-square"></i> Generate QR Code</h2>
+        <div class="button-group mb-2">
+          <button type="button" id="textUrlButton" class="btn btn-active">Text/URL</button>
+          <button type="button" id="upiButton" class="btn btn-inactive">UPI QR</button>
+        </div>
+        <form id="generateForm">
+          <div id="textUrlInputs" class="input-group flex flex-column">
+            <div class="form-group">
+              <label for="textInput">Enter Text or URL:</label>
+              <input type="text" id="textInput" class="form-control" placeholder="e.g., https://example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="colorPicker"><i class="fas fa-palette"></i> Choose Color:</label>
+              <input type="color" id="colorPicker" class="form-control" value="#1a5451">
+            </div>
+            <div class="form-group">
+              <label for="shapeSelector"><i class="fas fa-shapes"></i> Select QR Shape:</label>
+              <select id="shapeSelector" class="form-control">
+                <option value="square">Square</option>
+                <option value="rounded">Rounded</option>
+                <option value="classy">Classy</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="upiInputs" style="display:none;" class="input-group">
+            <div class="form-group">
+              <label for="amount">Amount (₹):</label>
+              <input type="number" class="form-control" id="amount" placeholder="Enter amount" min="0" required>
+              <div class="form-check mt-2 flex items-center">
+                <input class="form-check-input" type="checkbox" id="noAmount">
+                <label class="form-check-label m-0" for="noAmount">
+                  Generate QR Code without specifying amount
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="upiId">Receiver UPI ID:</label>
+              <input type="text" class="form-control" id="upiId" placeholder="e.g., kushalgowda111@ybl" required>
+            </div>
+            <div class="form-group">
+              <label for="upiColorPicker"><i class="fas fa-palette"></i> Choose Color:</label>
+              <input type="color" id="upiColorPicker" class="form-control" value="#1a5451">
+            </div>
+            <div class="form-group">
+              <label for="upiShapeSelector"><i class="fas fa-shapes"></i> Select QR Shape:</label>
+              <select id="upiShapeSelector" class="form-control">
+                <option value="square">Square</option>
+                <option value="rounded">Rounded</option>
+                <option value="classy">Classy</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="button-group mt-2">
+            <button type="button" id="generateButton" class="btn btn-primary"><i class="fas fa-qrcode"></i> Generate</button>
+            <button type="button" id="clearButton" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Clear</button>
+            <button type="button" id="downloadButton" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
+          </div>
+        </form>
+        <div id="qrCodeContainer" class="qr-code-container"></div>
+        <div id="generateMessage" class="message success mt-2" style="display:none;"></div>
+        <div id="errorMessage" class="message error mt-2"></div>
+      </section>
+
+      <!-- QR Code Scanner -->
+      <section id="scanner" class="card">
+        <h2><i class="fas fa-camera"></i> Scan QR Code</h2>
+        <div class="file-upload mb-2">
+          <label for="fileInput" class="upload-label">
+            <i class="fas fa-upload"></i> Upload QR Image
+          </label>
+          <input type="file" accept="image/*" id="fileInput" class="small-button">
+        </div>
+        <div class="button-group mb-1">
+          <button type="button" id="scanButton" class="btn btn-primary">
+            <i class="fas fa-camera"></i> Scan
+          </button>
+        </div>
+        <div id="ScanErrorMessage" class="message error mb-2"></div>
+        <div id="qrResult" style="display:none;">
+          <p><strong>Scanned Result:</strong></p>
+          <div id="resultContent" class="mb-2">No data scanned yet.</div>
+          <div class="controls">
+            <button id="copyButton" onclick="copyResult()" class="btn btn-secondary me-2" disabled><i class="fas fa-copy"></i> Copy</button>
+            <button id="downloadTextButton" onclick="downloadText()" class="btn btn-secondary" disabled><i class="fas fa-file-download"></i> Download</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>A mini project by : <strong>Kushal</strong></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="js/libs/instascan.min.js"></script>
+  <script src="js/libs/jsQR.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

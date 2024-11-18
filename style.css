@@ -1,0 +1,350 @@
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body */
+body {
+  font-family: 'Poppins', sans-serif !important;
+  background-color: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background-color: #1a5451;
+  color: #fff;
+  padding: 30px 0;
+  text-align: center;
+  width: 100%;
+  position:relative;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  color: #1a5451;
+  text-align:center;
+  width: 100%;
+  position:relative;
+}
+
+.footer p {
+  font-size: 0.9rem;
+}
+
+/* Main Content Adjustment to accommodate fixed header and footer */
+.main-content {
+  padding-top: 10px; /* Height of header */
+}
+
+.hero h1 {
+  font-size: 3rem; 
+  color: #1a5451;
+  font-weight: bolder;
+  margin-top: 15px; 
+}
+
+.hero p {
+  font-size: 0.9rem; 
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Content */
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 15px; 
+  gap: 30px; 
+  flex-wrap: wrap;
+}
+
+/* Cards */
+.card {
+  background-color: #fff;
+  border-radius: 11.25px;
+  box-shadow: 0 7.5px 18.75px rgba(0, 0, 0, 0.075); 
+  padding: 22.5px 18.75px; 
+  width: 100%;
+  max-width: 450px; 
+  transition: transform 0.225s, box-shadow 0.225s;
+}
+
+.card h2 {
+  font-size: 1.35rem; 
+  margin-bottom: 10px; 
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+}
+
+.card h2 i {
+  margin-right: 7.5px; 
+  color: #38b2ac;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 15px; 
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+/* Checkbox Container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.form-check-input {
+  width: 13.5px;
+  height: 13.5px;
+}
+
+.form-check-label {
+  font-size: 0.92rem;
+}
+
+/* Disabled State Styling */
+.disabled {
+  opacity: 0.45; 
+  pointer-events: none;
+}
+
+/* Disabled Label Styling */
+.disabled-label {
+  opacity: 0.45;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 7.5px; 
+  margin-top: 7.5px;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 9px; 
+  border: none;
+  border-radius: 6px;
+  background-color: #38b2ac;
+  color: #fff;
+  font-size: 0.75rem; 
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.225s, color 0.225s;
+}
+
+.button-group button i {
+  margin-right: 10px;
+}
+
+.button-group button:hover {
+  background-color: #2c7a7b;
+}
+
+.button-group button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Active and Inactive Button Styles */
+.btn-active {
+  background-color: #2c7a7b !important; 
+  color: #fff !important;
+}
+
+.btn-inactive {
+  background-color: #a0aec0 !important;
+  color: #fff !important;
+  cursor: not-allowed;
+}
+
+/* QR Code Container */
+.qr-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+canvas {
+  display: block;
+  margin: 15px auto 0 auto; 
+  border: 1.5px solid #e2e8f0;
+  border-radius: 7.5px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* File Upload */
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18.75px; 
+  border: 2.25px dashed #38b2ac;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background-color 0.225s, border-color 0.225s;
+  margin-bottom: 15px; 
+}
+
+.file-upload:hover {
+  background-color: #f0fff4;
+  border-color: #2c7a7b;
+}
+
+.upload-label {
+  font-size: 0.825rem; 
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+}
+
+.upload-label i {
+  margin-right: 7.5px;
+  color: #38b2ac;
+}
+
+.small-button {
+  padding: 3.75px 7.5px; 
+  font-size: 0.675rem;
+  border-radius: 3.75px;
+  border: 0.75px solid #cbd5e0;
+}
+
+/* Messages */
+.message {
+  text-align: center;
+  margin-top: 11.25px; 
+  font-size: 0.993rem;
+}
+
+.error {
+  color: #e53e3e;
+}
+
+.success {
+  color: #38a169;
+}
+
+/* QR Result */
+#qrResult {
+  background-color: #f7fafc;
+  border: 1.5px solid #cbd5e0;
+  border-radius: 7.5px; 
+  padding: 15px; 
+  margin-top: 7.5px; 
+}
+
+#qrResult p {
+  margin-bottom: 7.5px; 
+  font-weight: 600;
+  color: #4a5568;
+}
+
+#resultContent {
+  background-color: #edf2f7;
+  padding: 7.5px 11.25px; 
+  border-radius: 4.5px; 
+  word-wrap: break-word;
+  min-height: 30px;
+  margin-bottom: 11.25px; 
+  font-size: 0.75rem; 
+  color: #2d3748;
+}
+
+.controls {
+  display: flex;
+  gap: 7.5px; 
+}
+
+.controls button {
+  flex: 1;
+  padding: 7.5px; 
+  border: none;
+  border-radius: 4.5px;
+  background-color: #3182ce;
+  color: #fff;
+  font-size: 0.7125rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.225s;
+}
+
+.controls button i {
+  margin-right: 4.5px; 
+}
+
+.controls button:hover {
+  background-color: #2b6cb0;
+}
+
+.controls button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* UPI QR Code Styles */
+#qrCode {
+  margin-top: 15px; 
+}
+
+#qrCode img {
+  width: 150px;
+  height: 150px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem; 
+  }
+
+  main {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 7.5px;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column; 
+    gap: 7.5px;
+  }
+
+  .small-button {
+    padding: 3.75px 7.5px;
+    font-size: 0.675rem; 
+    border-radius: 3.75px; 
+    border: 0.75px solid #cbd5e0;
+  }
+}
